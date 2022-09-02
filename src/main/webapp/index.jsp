@@ -30,10 +30,12 @@
   </header>
 
   <div class="container-fluid p-4">
-    <div class=" row justify-content-start align-items-top p-2 gap-0 overflow-y-scroll" style="background-color:#EBEBEB;">
+    <div class="justify-content-start align-items-top p-2 gap-0 " style="background-color:#EBEBEB;height: 80vh;overflow-y: scroll;">
     
       <div class="fs-2 fw-bold">Users</div>
    
+      <div class="d-flex flex-wrap">
+
       <div class="col-3 p-2">
         <div class="border position-relative p-3 bg-light shadow">
           <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
@@ -68,12 +70,299 @@
 
         </div>
       </div>
+
+      <div class="col-3 p-2 ">
+        <div class="border position-relative p-3 bg-light shadow">
+          <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
+
+          <div class="d-flex">
+            <div class="col-3">Name</div>
+            <span>:</span>
+            <div class="col-5 ps-2">Lasith Eranda Handapangoda</div>
+          </div>
+          <div class="d-flex">
+            <div class="col-3">NIC</div>
+            <span>:</span>
+            <div class="col-5 ps-2">990811130V</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Age</div>
+            <span>:</span>
+            <div class="col-5 ps-2">23 yrs</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Address</div>
+            <span>:</span>
+            <div class="col-7 ps-2">200D, Thibbotugoda, Pokunuwita</div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></div>
+            <div class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-3 p-2 ">
+        <div class="border position-relative p-3 bg-light shadow">
+          <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
+
+          <div class="d-flex">
+            <div class="col-3">Name</div>
+            <span>:</span>
+            <div class="col-5 ps-2">Lasith Eranda Handapangoda</div>
+          </div>
+          <div class="d-flex">
+            <div class="col-3">NIC</div>
+            <span>:</span>
+            <div class="col-5 ps-2">990811130V</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Age</div>
+            <span>:</span>
+            <div class="col-5 ps-2">23 yrs</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Address</div>
+            <span>:</span>
+            <div class="col-7 ps-2">200D, Thibbotugoda, Pokunuwita</div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></div>
+            <div class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-3 p-2 ">
+        <div class="border position-relative p-3 bg-light shadow">
+          <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
+
+          <div class="d-flex">
+            <div class="col-3">Name</div>
+            <span>:</span>
+            <div class="col-5 ps-2">Lasith Eranda Handapangoda</div>
+          </div>
+          <div class="d-flex">
+            <div class="col-3">NIC</div>
+            <span>:</span>
+            <div class="col-5 ps-2">990811130V</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Age</div>
+            <span>:</span>
+            <div class="col-5 ps-2">23 yrs</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Address</div>
+            <span>:</span>
+            <div class="col-7 ps-2">200D, Thibbotugoda, Pokunuwita</div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></div>
+            <div class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-3 p-2 ">
+        <div class="border position-relative p-3 bg-light shadow">
+          <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
+
+          <div class="d-flex">
+            <div class="col-3">Name</div>
+            <span>:</span>
+            <div class="col-5 ps-2">Lasith Eranda Handapangoda</div>
+          </div>
+          <div class="d-flex">
+            <div class="col-3">NIC</div>
+            <span>:</span>
+            <div class="col-5 ps-2">990811130V</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Age</div>
+            <span>:</span>
+            <div class="col-5 ps-2">23 yrs</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Address</div>
+            <span>:</span>
+            <div class="col-7 ps-2">200D, Thibbotugoda, Pokunuwita</div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></div>
+            <div class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-3 p-2 ">
+        <div class="border position-relative p-3 bg-light shadow">
+          <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
+
+          <div class="d-flex">
+            <div class="col-3">Name</div>
+            <span>:</span>
+            <div class="col-5 ps-2">Lasith Eranda Handapangoda</div>
+          </div>
+          <div class="d-flex">
+            <div class="col-3">NIC</div>
+            <span>:</span>
+            <div class="col-5 ps-2">990811130V</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Age</div>
+            <span>:</span>
+            <div class="col-5 ps-2">23 yrs</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Address</div>
+            <span>:</span>
+            <div class="col-7 ps-2">200D, Thibbotugoda, Pokunuwita</div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></div>
+            <div class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-3 p-2 ">
+        <div class="border position-relative p-3 bg-light shadow">
+          <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
+
+          <div class="d-flex">
+            <div class="col-3">Name</div>
+            <span>:</span>
+            <div class="col-5 ps-2">Lasith Eranda Handapangoda</div>
+          </div>
+          <div class="d-flex">
+            <div class="col-3">NIC</div>
+            <span>:</span>
+            <div class="col-5 ps-2">990811130V</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Age</div>
+            <span>:</span>
+            <div class="col-5 ps-2">23 yrs</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Address</div>
+            <span>:</span>
+            <div class="col-7 ps-2">200D, Thibbotugoda, Pokunuwita</div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></div>
+            <div class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="col-3 p-2 ">
+        <div class="border position-relative p-3 bg-light shadow">
+          <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
+
+          <div class="d-flex">
+            <div class="col-3">Name</div>
+            <span>:</span>
+            <div class="col-5 ps-2">Lasith Eranda Handapangoda</div>
+          </div>
+          <div class="d-flex">
+            <div class="col-3">NIC</div>
+            <span>:</span>
+            <div class="col-5 ps-2">990811130V</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Age</div>
+            <span>:</span>
+            <div class="col-5 ps-2">23 yrs</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Address</div>
+            <span>:</span>
+            <div class="col-7 ps-2">200D, Thibbotugoda, Pokunuwita</div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></div>
+            <div class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-3 p-2 ">
+        <div class="border position-relative p-3 bg-light shadow">
+          <div class="bg-primary position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">M</div>
+
+          <div class="d-flex">
+            <div class="col-3">Name</div>
+            <span>:</span>
+            <div class="col-5 ps-2">Lasith Eranda Handapangoda</div>
+          </div>
+          <div class="d-flex">
+            <div class="col-3">NIC</div>
+            <span>:</span>
+            <div class="col-5 ps-2">990811130V</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Age</div>
+            <span>:</span>
+            <div class="col-5 ps-2">23 yrs</div>
+          </div>
+
+          <div class="d-flex">
+            <div class="col-3">Address</div>
+            <span>:</span>
+            <div class="col-7 ps-2">200D, Thibbotugoda, Pokunuwita</div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></div>
+            <div class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    
+    
+    
     
     </div>
 
   </div>
 
-  <div class="bg-secondary position-fixed rounded-circle d-flex justify-content-center align-items-center" style="bottom: 40px;right: 40px; width: 50px;height: 50px;"><i class="fa-solid fa-user-plus text-light ps-1"></i></div>
+  <div class="bg-secondary position-fixed rounded-circle d-flex justify-content-center align-items-center btn border-0" style="bottom: 40px;right: 40px; width: 50px;height: 50px;"><i class="fa-solid fa-user-plus text-light ps-1"></i></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
