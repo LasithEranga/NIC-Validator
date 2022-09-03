@@ -13,9 +13,9 @@
 <body>
   
   <header>
-    <div class="d-flex bg-secondary py-3"> 
+    <div class="d-flex bg-light py-3 shadow"> 
 
-        <div class="col-6 ps-3 fs-3 fw-bold text-light">
+        <div class="col-6 ps-3 fs-3 fw-bold">
           User Management System
         </div>
 

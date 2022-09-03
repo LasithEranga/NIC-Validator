@@ -60,8 +60,6 @@ public class User {
         this.nationality = nationality;
     }
 
-
-
     public String getGender() {
         return gender;
     }
