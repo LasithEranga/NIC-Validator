@@ -37,7 +37,7 @@
 
         <div class="d-flex justify-content-start mt-3 ">
           <div class="col-3">Age</div>
-          <div>: ${users[0].getDob()}</div>
+          <div>: <span id="age"></span></div>
         </div>
 
         <div class="d-flex justify-content-start mt-3 ">
@@ -71,9 +71,17 @@
   </div>
     
     <script>
+
       const haveData = ${users.size()};
       const noInfo = document.getElementById("no-info");
       const content = document.getElementById("content");
+      const ageContainer = document.getElementById("age");
+      let dob = new Date("${users[0].getDob()}").getFullYear();
+      let currentYear = new Date().getFullYear();
+      let age = currentYear - dob;
+      ageContainer.innerText = age + " yrs";
+
+      //display no info dialog if no users are available in database.
       if(haveData === 0){
         content.style.display = "none";
         noInfo.style.display = "unset";
@@ -82,6 +90,9 @@
         noInfo.style.display = "none";
         content.style.display = "unset";
       }
+
+
+
       
     </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
