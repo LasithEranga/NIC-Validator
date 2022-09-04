@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <% int i = 10;%>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,53 +35,55 @@
     
     <div class=" col-6 border p-4 shadow " >
       <div class=" fs-3 mb-4">New User</div>
-      <form action="">
+      <form:form action="saveUser" method="post" modelAttribute="user">
         <div class="d-flex justify-content-center mt-3 ">
-          <label for="full_name" class="col-4">Full Name:</label>
-          <input type="text" id="full_name" name="full_name" class="w-100 form-control">
+          <form:label  class="col-4">Full Name:</label>
+          <form:input  path="full_name" class="w-100 form-control" />
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <label for="nic" class="col-4">NIC No:</label>
-          <input type="text" id="nic" name="nic" class="w-100 form-control">
+          <form:label  class="col-4">NIC No:</form:label>
+          <form:input  id="nic" path="nic" class="w-100 form-control" />
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <label for="dob" class="col-4">Date of birth:</label>
-          <input type="date" id="dob" name="dob" class="w-100 form-control">
+          <form:label  class="col-4">Date of birth:</form:label>
+          <form:input type="date" path="dob" class="w-100 form-control" />
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <label for="address" class="col-4">Address:</label>
-          <textarea id="address" name="address" class="w-100 form-control" ></textarea>
+          <form:label path="address" class="col-4">Address:</form:label>
+          <form:textarea  path="address" class="w-100 form-control" ></form:textarea>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <label for="nationality" class="col-4">Nationality:</label>
-          <select name="nationality" id="nationality" class="form-select w-100">
-            <option value="Sinhalese">Sinhalese</option>
-            <option value="Tamil">Tamil</option>
-          </select>
+          <form:label  class="col-4">Nationality:</form:label>
+          <form:select path="nationality"  class="form-select w-100">
+            <form:option value="Sinhalese">Sinhalese</form:option>
+            <form:option value="Tamil">Tamil</form:option>
+          </form:select>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <label for="gender" class="col-4">Gender:</label>
+          <form:label for="gender" class="col-4">Gender:</form:label>
           <div class="w-100">
-            <input type="radio" name="gender" value="Male"> Male
-            <input type="radio" class="ms-5" name="gender" value="Female"> Female
+            <form:radiobutton  path="gender" value="Male" /> Male
+            <form:radiobutton  class="ms-5" path="gender" value="Female" /> Female
           </div>
         </div>
 
         <div class="d-flex justify-content-end mt-3">
-          <input type="reset" value="Reset" class="btn btn-secondary me-2 px-4">
-          <input type="submit" value="Save" class="btn btn-success px-4">
+          <form:button value="Reset" class="btn btn-secondary me-2 px-4" />
+          <form:button  value="Save" class="btn btn-success px-4" />
         </div>
-      </form>
+      </form:form>
     </div>
     
   </div>
 
+  
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -4,34 +4,63 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mobios.assestment.Database.Database;
+import com.mobios.assestment.Model.Car;
 import com.mobios.assestment.Model.User;
 
 @Controller
 public class UserController {
 
+    @GetMapping("/add")
+    public String newUserModel(Model model){
+        List<String> nationalityList = Arrays.asList("Sinhalese", "Hindu", "Islamic");
+        User user = new User();
+        user.setAddress("address");
+        model.addAttribute("user", user);
+        model.addAttribute("nationalityList", nationalityList);
+        return "AddUser";
+    }
+
+    @GetMapping("/edit")
+    public String editUserModel(Model model){
+        List<String> nationalityList = Arrays.asList("Sinhalese", "Hindu", "Islamic");
+        User user = new User();
+        model.addAttribute("user", user);
+        model.addAttribute("nationalityList", nationalityList);
+        return "AddUser";
+    }
+
+    @PostMapping("/register")
+    public void newcar(@ModelAttribute("user") User user){
+        System.out.println(user.getFullName());
+    }
+
     @PostMapping("/saveUser")
     public int saveUser(@ModelAttribute("user") User user ){
 
         int count = 0;
-        String query = "INSERT INTO `user`(`nic`, `full_name`, `address`, `dob`, `nationality`, `gender`) VALUES ('"+user.getNic()+"','"+user.getFullName()+"','"+user.getAddress()+"','"+user.getDob()+"','"+user.getNationality()+"','"+user.getGender()+"')";
-        try(Connection conn = Database.getConnection()){
+        // String query = "INSERT INTO `user`(`nic`, `full_name`, `address`, `dob`, `nationality`, `gender`) VALUES ('"+user.getNic()+"','"+user.getFullName()+"','"+user.getAddress()+"','"+user.getDob()+"','"+user.getNationality()+"','"+user.getGender()+"')";
+        // try(Connection conn = Database.getConnection()){
 
-            Statement statement = conn.createStatement();
-            count = statement.executeUpdate(query);
+        //     Statement statement = conn.createStatement();
+        //     count = statement.executeUpdate(query);
 
-        }
-        catch(SQLException e){
+        // }
+        // catch(SQLException e){
 
-            e.printStackTrace();
+        //     e.printStackTrace();
 
-        }
+        // }
+        System.out.println(user);
         return count;
     }
 

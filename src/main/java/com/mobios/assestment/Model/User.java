@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
     
     private String nic;
-    private String full_name;
+    private String fullName;
     private String address;
     private Date dob;
     private String nationality;
@@ -23,11 +23,11 @@ public class User {
 
 
     public String getFullName() {
-        return full_name;
+        return fullName;
     }
 
-    public void setFullName(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
 
