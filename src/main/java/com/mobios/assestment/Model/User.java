@@ -1,6 +1,6 @@
 package com.mobios.assestment.Model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class User {
     
@@ -9,6 +9,20 @@ public class User {
     private String address;
     private Date dob;
     private String nationality;
+
+    public User(){
+        
+    };
+
+    public User(String nic, String fullName, String address, Date dob, String nationality, String gender) {
+        this.nic = nic;
+        this.fullName = fullName;
+        this.address = address;
+        this.dob = dob;
+        this.nationality = nationality;
+        this.gender = gender;
+    }
+
     private String gender;
 
 

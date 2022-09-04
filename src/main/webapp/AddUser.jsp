@@ -35,7 +35,7 @@
     
     <div class=" col-6 border p-4 shadow " >
       <div class=" fs-3 mb-4">New User</div>
-      <form:form action="register" method="post" modelAttribute="user">
+      <form:form action="add-new" method="post" modelAttribute="user">
         
         <div class="d-flex justify-content-center mt-3 ">
           <form:label path="fullName"  class="col-4">Full Name:</form:label>
