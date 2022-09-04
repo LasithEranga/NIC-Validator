@@ -40,8 +40,8 @@
         <div class="d-flex justify-content-center mt-3">
           <form:label path="dob"  class="col-4">Date of birth:</form:label>
           <div class="w-100">
-            <form:input type="date" id="date" path="dob" class="w-100 form-control" />
-            <div class="ps-2 d-none text-danger" id="dateError"></div>
+            <form:input type="date" id="dob" path="dob" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="dobError"></div>
           </div>
         </div>
 
@@ -77,13 +77,27 @@
     </div>
 
      <script>
+      const nicField = document.getElementById("nic");
+      const nicError = document.getElementById("nicError");
+
+      const fulNameField = document.getElementById("fulName");
+      const fulNameError = document.getElementById("fulNameError");
+
+      const dobField = document.getElementById("dob");
+      const dobError = document.getElementById("dobError");
+
+      const addressField = document.getElementById("address");
+      const addressError = document.getElementById("addressError");
+
+      const nationalityField = document.getElementById("nationality");
+      const nationalityError = document.getElementById("nationalityError");
+
+      const genderError = document.getElementById("genderError");
+
+      const nic = nicField.value;
+      const months = [31,29,31,30,31,30,31,31,30,31,30,31];
+    
       const validateNIC = () => {
-
-        const nicField = document.getElementById("nic");
-        const nicError = document.getElementById("nicError");
-        const nic = nicField.value;
-        const months = [31,29,31,30,31,30,31,31,30,31,30,31];
-
         let validNic = false;
         let oldNIC = false;
 
@@ -156,7 +170,7 @@
           }
           date = monthDate;
 
-          console.log(year,month,date,gender);
+          return [year,month,date,gender];
 
         }else{
           //invalid nic
@@ -176,7 +190,7 @@
       const buttonClick = document.getElementById("btn-submit")
       const form = document.getElementById('form')
       buttonClick.addEventListener('click',() => {
-        validateNIC();
+        const [year,month,date,gender] = validateNIC();
       })
     </script>
     
