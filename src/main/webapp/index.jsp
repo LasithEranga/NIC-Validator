@@ -9,12 +9,16 @@
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/4f128951c5.js" crossorigin="anonymous"></script>
+  <script></script>
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100" >
  
     <div class="col-6 border p-5 shadow " >
       <div class=" fs-2 fw-semibold mb-4">NIC Validator</div>
       <div class="  fw-semibold mb-4">Your Info</div>
+      <div class="text-center" id="no-info">
+        Sorry! No infomation available to show ...  <a href="/add-new" class="ms-3"> Add info</a>
+      </div>
       <div id="content" >
         <div class="d-flex justify-content-start mt-3 ">
           <div class="col-3">Full Name</div>
@@ -52,8 +56,9 @@
         </div>
 
         <div class="d-flex justify-content-end mt-3">
-        <form>
-        <input type="reset" value="Delete" class="btn btn-secondary me-2 px-4">
+        <form action="/delete-user" method="POST">
+          <input hidden value="${users[0].getNic()}" name="nic"/>
+          <input type="submit" value="Delete" class="btn btn-secondary me-2 px-4">
         </form>
 
         <form action="/edit-user" method="GET">
@@ -65,7 +70,20 @@
     </div>
   </div>
     
-
+    <script>
+      const haveData = ${users.size()};
+      const noInfo = document.getElementById("no-info");
+      const content = document.getElementById("content");
+      if(haveData === 0){
+        content.style.display = "none";
+        noInfo.style.display = "unset";
+      }
+      else{
+        noInfo.style.display = "none";
+        content.style.display = "unset";
+      }
+      
+    </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

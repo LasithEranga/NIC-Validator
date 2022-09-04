@@ -1,7 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<% int i = 10;%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,29 +11,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/4f128951c5.js" crossorigin="anonymous"></script>
 </head>
-<body>
-<header>
-    <div class="d-flex bg-light py-3 shadow"> 
-
-        <div class="col-6 ps-3 fs-3 fw-bold">
-          User Management System
-        </div>
-
-        <div class="d-flex col-6 justify-content-end pe-5">
-          <div class="col-7 d-flex align-items-center">
-            <input type="text" class="w-100 p-2  ps-3" placeholder="Search">
-            <button class="btn btn-primary h-100 ms-2 px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
-          </div>
-        </div>
-
-    </div>
-  </header>
- 
+<body class="d-flex justify-content-center align-items-center vh-100">
 
   <div class="container-fluid d-flex p-4 justify-content-center">
     
-    <div class=" col-6 border p-4 shadow " >
-      <div class=" fs-3 mb-4">New User</div>
+    <div class="col-6 border p-4 shadow " >
+    <div class=" fs-2 fw-semibold mb-4">NIC Validator</div>
+    <div class="  fw-semibold mb-4">Add Info</div>
+    <div>
       <form:form action="add-new" method="post" modelAttribute="user">
         
         <div class="d-flex justify-content-center mt-3 ">
@@ -49,7 +33,7 @@
 
         <div class="d-flex justify-content-center mt-3">
           <form:label path="dob"  class="col-4">Date of birth:</form:label>
-          <form:input path="dob" class="w-100 form-control" />
+          <form:input type="date" path="dob" class="w-100 form-control" />
         </div>
 
         <div class="d-flex justify-content-center mt-3">
