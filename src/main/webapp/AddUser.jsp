@@ -19,31 +19,46 @@
     <div class=" fs-2 fw-semibold mb-4">NIC Validator</div>
     <div class="  fw-semibold mb-4">Add Info</div>
     <div>
-      <form:form action="add-new" method="post" modelAttribute="user">
+      <form:form action="add-new" id="form" method="post" modelAttribute="user">
         
         <div class="d-flex justify-content-center mt-3 ">
           <form:label path="fullName"  class="col-4">Full Name:</form:label>
-          <form:input  path="fullName" class="w-100 form-control" />
+          <div class="w-100">
+            <form:input id="fulName"  path="fullName" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="fullNameError"></div>
+          </div>
         </div>
         
         <div class="d-flex justify-content-center mt-3">
           <form:label path="nic"  class="col-4">NIC No:</form:label>
-          <form:input   path="nic" class="w-100 form-control" />
+          <div class="w-100">
+            <form:input id="nic"  path="nic" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="nicError"></div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
           <form:label path="dob"  class="col-4">Date of birth:</form:label>
-          <form:input type="date" path="dob" class="w-100 form-control" />
+          <div class="w-100">
+            <form:input type="date" id="date" path="dob" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="dateError"></div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
           <form:label path="address" class="col-4">Address:</form:label>
-          <form:textarea  path="address" class="w-100 form-control" />
+          <div class="w-100">
+            <form:textarea id="address" path="address" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="addressError"></div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
           <form:label path="nationality"  class="col-4">Nationality:</form:label>
-          <form:select path="nationality" items="${nationalityList}"  class="form-select w-100" />
+          <div class="w-100">
+            <form:select id="nationality" path="nationality" items="${nationalityList}"  class="form-select w-100" />
+            <div class="ps-2 d-none text-danger" id="nationalityError"></div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
@@ -51,14 +66,119 @@
           <div class="w-100">
             <form:radiobutton  path="gender" value="Male" /> Male
             <form:radiobutton  class="ms-5" path="gender" value="Female" /> Female
-            </div>
+            <div class="ps-2 d-none text-danger" id="genderError"></div>
+          </div>
         <div class="d-flex justify-content-end mt-3">
         
           <form:button type="reset" class="btn btn-secondary me-2 px-4">Clear</form:button>
-          <form:button  type="submit" class="btn btn-success px-4" >Save</form:button>
+          <form:button  type="button" id="btn-submit" class="btn btn-success px-4" >Save</form:button>
           </div>
       </form:form>
     </div>
+
+     <script>
+      const validateNIC = () => {
+
+        const nicField = document.getElementById("nic");
+        const nicError = document.getElementById("nicError");
+        const nic = nicField.value;
+        const months = [31,29,31,30,31,30,31,31,30,31,30,31];
+
+        let validNic = false;
+        let oldNIC = false;
+
+        if(nic.length === 0){
+          nicField.classList.add("is-invalid")
+          nicError.innerText = "Please enter NIC number";
+          nicError.classList.remove("d-none");
+        }
+        else{
+
+        if(nic.length === 12){
+          validNic = true;
+          oldNIC = false;
+        }
+        else if(nic.length === 10){
+          validNic = true;
+          oldNIC = true;
+        }
+
+        let gender = "";
+        let year;
+        let month;
+        let date;
+        let monthDate;
+        let yearDigits;
+
+        if(validNic){
+          
+          //set nic as correct
+          nicField.classList.add("is-valid");
+          nicField.classList.remove("is-invalid");
+          nicError.classList.add("d-none");
+          
+
+          if(oldNIC){
+          yearDigits = Number(nic.substring(0,2));
+          monthDate = Number(nic.substring(2,5));
+          year = 1900 + yearDigits;
+          }
+          else{
+            yearDigits = Number(nic.substring(0,4));
+            monthDate = Number(nic.substring(4,7));
+            year = yearDigits;
+          }
+
+          if(monthDate > 500){
+            monthDate = monthDate-500;
+            gender = "Female";
+          }else{
+            gender = "Male";
+          }
+
+
+          let tempMd = monthDate;
+
+          for(let i=0; i<12; i++){
+              if(tempMd <= months[i]){
+                  month = i+1;
+                  break;
+              }
+              else{
+
+                  tempMd = tempMd - months[i];
+              }
+          }
+
+          // date
+          for(let i=0; i < month-1; i++){
+              monthDate = monthDate - months[i];
+          }
+          date = monthDate;
+
+          console.log(year,month,date,gender);
+
+        }else{
+          //invalid nic
+          //set field validation fail
+          nicField.classList.add("is-invalid");
+          nicError.innerText = "Please enter a valid NIC number";
+          nicError.classList.remove("d-none");
+
+        }
+                  
+        }
+
+      }
+
+
+
+      const buttonClick = document.getElementById("btn-submit")
+      const form = document.getElementById('form')
+      buttonClick.addEventListener('click',() => {
+        validateNIC();
+      })
+    </script>
     
   </div>
 
