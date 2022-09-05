@@ -243,9 +243,6 @@ public class UserController {
 
     }
 
-
-    
-
     @PostMapping("/editUser")
     public RedirectView editUser(@ModelAttribute("user") User user,@RequestParam("old-nic") String oldNic ){
 
