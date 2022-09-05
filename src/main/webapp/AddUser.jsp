@@ -15,7 +15,7 @@
 
   <div class="container-fluid d-flex p-md-4 justify-content-center">
     
-    <div class="col-12 col-md-6 border p-4 shadow " >
+    <div class="col-12 col-md-6 border p-4 shadow mt-3 mt-md-0" >
     <div class=" fs-2 fw-semibold mb-4">NIC Validator</div>
     <div class="  fw-semibold mb-4">Add Info</div>
       <form:form action="add-new" id="form" method="post" modelAttribute="user">

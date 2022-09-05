@@ -9,7 +9,18 @@
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/4f128951c5.js" crossorigin="anonymous"></script>
-  <script></script>
+  <style>
+   @media screen and (max-width: 480px) {
+      .toast-container {
+        left:5%;
+      }
+    }
+    @media screen and (min-width: 480px) {
+      .toast-container {
+        left:0%;
+      }
+    }
+  </style>
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100" >
 
@@ -71,7 +82,7 @@
   </div>
 
 
-<div class="toast-container position-fixed bottom-0 start-0 p-3" style="width:20rem;">
+<div class="toast-container position-fixed bottom-0 p-3" style="width:20rem;">
   <div id="toast" class="toast" role="alert">
     <div class="toast-header">
       <i class="fa-sharp fa-solid fa-circle-info text-primary me-2"></i>
@@ -79,7 +90,7 @@
       <small>Just now</small>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body">
+    <div class="toast-body bg-light mt-0">
       ${message}
     </div>
   </div>
