@@ -48,11 +48,23 @@ const validateNIC = () => {
 
   } else {
     if (nic.length === 12) {
-      validNic = true;
-      oldNIC = false;
+      if(nic.match(/^\d{12}/)){
+        validNic = true;
+        oldNIC = false;
+      }else{
+        showErrors(nicField,nicError,"Invalid NIC format");
+        validNic = false;
+      }
+      
     } else if (nic.length === 10) {
-      validNic = true;
-      oldNIC = true;
+      if(nic.match(/^\d{9}[vxVX]{1}/)){
+        validNic = true;
+        oldNIC = true;
+      }else{
+        showErrors(nicField,nicError,"Invalid NIC format");
+        validNic = false;
+      }
+      
     }
 
     let gender = "";
