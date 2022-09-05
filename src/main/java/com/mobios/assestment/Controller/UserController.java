@@ -1,5 +1,4 @@
 package com.mobios.assestment.Controller;
-import java.io.Console;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -101,9 +99,7 @@ public class UserController {
         return "EditUser";
     }
 
-
-
-    public boolean validateResults(String nic,String submittedDob, String submittedGender){
+    public boolean validateNicDobGender(String nic,String submittedDob, String submittedGender){
 
             int months [] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
             Pattern oldNicPattern = Pattern.compile("^\\d{9}[vxVX]{1}");
@@ -225,10 +221,9 @@ public class UserController {
 
     @PostMapping("/add-new")
     public RedirectView saveUser(@ModelAttribute("user") User user ){
-        boolean isNicDobGenderValid = validateResults(user.getNic(),user.getDob().toString(),user.getGender());
+        boolean isNicDobGenderValid = validateNicDobGender(user.getNic(),user.getDob().toString(),user.getGender());
         boolean isNameValid = validName(user.getFullName());
         boolean isAddressValid = validAddress(user.getAddress());
-
 
         if(isNicDobGenderValid && isNameValid && isAddressValid){
             String query = "INSERT INTO `user`(`nic`, `full_name`, `address`, `dob`, `nationality`, `gender`) VALUES ('"+user.getNic()+"','"+user.getFullName()+"','"+user.getAddress()+"','"+user.getDob()+"','"+user.getNationality()+"','"+user.getGender()+"')";
@@ -252,14 +247,14 @@ public class UserController {
     
 
     @PostMapping("/editUser")
-    public RedirectView editUser(@ModelAttribute("user") User user ){
+    public RedirectView editUser(@ModelAttribute("user") User user,@RequestParam("old-nic") String oldNic ){
 
-        boolean isNicDobGenderValid = validateResults(user.getNic(),user.getDob().toString(),user.getGender());
+        boolean isNicDobGenderValid = validateNicDobGender(user.getNic(),user.getDob().toString(),user.getGender());
         boolean isNameValid = validName(user.getFullName());
         boolean isAddressValid = validAddress(user.getAddress());
 
         if(isNicDobGenderValid && isNameValid && isAddressValid){
-            String query = "UPDATE `user` SET `nic`='"+user.getNic()+"',`full_name`='"+user.getFullName()+"',`address`='"+user.getAddress()+"',`dob`='"+user.getDob()+"',`nationality`='"+user.getNationality()+"',`gender`='"+user.getGender()+"' WHERE nic='"+user.getNic()+"'";
+            String query = "UPDATE `user` SET `nic`='"+user.getNic()+"',`full_name`='"+user.getFullName()+"',`address`='"+user.getAddress()+"',`dob`='"+user.getDob()+"',`nationality`='"+user.getNationality()+"',`gender`='"+user.getGender()+"' WHERE nic='"+oldNic+"'";
             try(Connection conn = Database.getConnection()){
 
                 Statement statement = conn.createStatement();

@@ -21,6 +21,7 @@
     <div class="  fw-semibold mb-4">Update Info</div>
       
       <form:form action="editUser" id="form" method="post" modelAttribute="user">
+        <input id="old-nic" hidden  name="old-nic" class="w-100 form-control" />
         
         <div class="d-flex justify-content-center mt-3 ">
           <form:label path="fullName"  class="col-4">Full Name:</form:label>
@@ -92,6 +93,8 @@
       let currentYear = new Date().getFullYear();
       let age = currentYear - dob;
       ageField.value = age + " yrs";
+
+      document.getElementById("old-nic").value = document.getElementById("nic").value;
 </script>
   
 
