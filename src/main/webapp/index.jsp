@@ -12,7 +12,7 @@
   <script></script>
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100" >
- 
+
     <div class="col-6 border p-5 shadow " >
       <div class=" fs-2 fw-semibold mb-4">NIC Validator</div>
       <div class="  fw-semibold mb-4">Your Info</div>
@@ -69,6 +69,23 @@
         </div>
     </div>
   </div>
+
+
+<div class="toast-container position-fixed bottom-0 start-0 p-3" style="width:20rem;">
+  <div id="toast" class="toast" role="alert">
+    <div class="toast-header">
+      <i class="fa-sharp fa-solid fa-circle-info text-primary me-2"></i>
+      <strong class="me-auto">NIC Validator</strong>
+      <small>Just now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      ${message}
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     
     <script>
 
@@ -76,6 +93,9 @@
       const noInfo = document.getElementById("no-info");
       const content = document.getElementById("content");
       const ageContainer = document.getElementById("age");
+      const toastMessage = document.getElementById('toast');
+      const haveMessage = "${message}";
+      
       let dob = new Date("${users[0].getDob()}").getFullYear();
       let currentYear = new Date().getFullYear();
       let age = currentYear - dob;
@@ -92,9 +112,14 @@
       }
 
 
+      //show if there are any messages to show
+      if(haveMessage){
+        new bootstrap.Toast(toastMessage).show();
+      }
+
+
 
       
     </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

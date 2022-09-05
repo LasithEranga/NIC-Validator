@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import com.mobios.assestment.Database.Database;
 import com.mobios.assestment.Model.User;
@@ -220,7 +222,7 @@ public class UserController {
     }
 
     @PostMapping("/add-new")
-    public RedirectView saveUser(@ModelAttribute("user") User user ){
+    public String saveUser(@ModelAttribute("user") User user,final RedirectAttributes redirectAttributes ){
         boolean isNicDobGenderValid = validateNicDobGender(user.getNic(),user.getDob().toString(),user.getGender());
         boolean isNameValid = validName(user.getFullName());
         boolean isAddressValid = validAddress(user.getAddress());
@@ -238,14 +240,20 @@ public class UserController {
                 e.printStackTrace();
 
             }
+            redirectAttributes.addFlashAttribute("message", "User details saved");
+
+        }else{
+            redirectAttributes.addFlashAttribute("message", "Something went wrong!");
+
         }
-        return new RedirectView("/");
+        
+        return "redirect:/";
 
     }
 
     @PostMapping("/editUser")
-    public RedirectView editUser(@ModelAttribute("user") User user,@RequestParam("old-nic") String oldNic ){
-
+    public String editUser(final RedirectAttributes redirectAttributes, @ModelAttribute("user") User user,@RequestParam("old-nic") String oldNic ){
+        
         boolean isNicDobGenderValid = validateNicDobGender(user.getNic(),user.getDob().toString(),user.getGender());
         boolean isNameValid = validName(user.getFullName());
         boolean isAddressValid = validAddress(user.getAddress());
@@ -263,13 +271,21 @@ public class UserController {
                 e.printStackTrace();
 
             }
-        }
 
-        return new RedirectView("/");
+            redirectAttributes.addFlashAttribute("message", "User details updated");
+
+            
+        }else{
+            redirectAttributes.addFlashAttribute("message", "Something went wrong!");
+
+        }
+        //RedirectView redirectView = new RedirectView("/");
+        
+        return "redirect:/";
     }
 
     @PostMapping("/delete-user")
-    public RedirectView deleteUser(@RequestParam("nic") String nic  ){
+    public String deleteUser(@RequestParam("nic") String nic, final RedirectAttributes redirectAttributes ){
 
         String query = "DELETE FROM `user` WHERE nic='"+nic+"'";
         try(Connection conn = Database.getConnection()){
@@ -283,7 +299,8 @@ public class UserController {
             e.printStackTrace();
 
         }
-        return new RedirectView("/");
+        redirectAttributes.addFlashAttribute("message", "User details removed");
+        return "redirect:/";
     }
 
 
