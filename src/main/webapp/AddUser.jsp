@@ -24,7 +24,7 @@
         <div class="d-flex justify-content-center mt-3 ">
           <form:label path="fullName"  class="col-4">Full Name:</form:label>
           <div class="w-100">
-            <form:input id="fullName"  path="fullName" class="w-100 form-control" />
+            <form:input id="fullName" onblur="validateName(fullNameField,fullNameError)"  path="fullName" class="w-100 form-control" />
             <div class="ps-2 d-none text-danger" id="fullNameError"></div>
           </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="d-flex justify-content-center mt-3">
           <form:label path="address" class="col-4">Address:</form:label>
           <div class="w-100">
-            <form:textarea id="address" path="address" class="w-100 form-control" />
+            <form:textarea id="address" onblur="validateAddress(addressField,addressError)" path="address" class="w-100 form-control" />
             <div class="ps-2 d-none text-danger" id="addressError"></div>
           </div>
         </div>

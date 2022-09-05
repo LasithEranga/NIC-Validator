@@ -187,7 +187,7 @@ const validateAddress = (addressField,errorField) => {
     }
     else if(!address.match(/^[a-zA-Z0-9/.,\s]+$/)){
         //show error msg
-        showErrors(addressField,errorField,"Address seems to be having invalid characters")
+        showErrors(addressField,errorField,"Address seems to be having some invalid characters")
         return false;
 
 

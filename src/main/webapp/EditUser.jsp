@@ -20,49 +20,79 @@
     <div class=" fs-2 fw-semibold mb-4">NIC Validator</div>
     <div class="  fw-semibold mb-4">Update Info</div>
       
-      <form:form action="/editUser" method="post" modelAttribute="user">
+      <form:form action="editUser" id="form" method="post" modelAttribute="user">
         
         <div class="d-flex justify-content-center mt-3 ">
           <form:label path="fullName"  class="col-4">Full Name:</form:label>
-          <form:input  path="fullName" class="w-100 form-control" />
+          <div class="w-100">
+            <form:input id="fullName" onblur="validateName(fullNameField,fullNameError)"  path="fullName" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="fullNameError"></div>
+          </div>
         </div>
         
         <div class="d-flex justify-content-center mt-3">
           <form:label path="nic"  class="col-4">NIC No:</form:label>
-          <form:input   path="nic" class="w-100 form-control" />
+          <div class="w-100">
+            <form:input id="nic" onblur="generateDobGenderAge()"  path="nic" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="nicError"></div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
           <form:label path="dob"  class="col-4">Date of birth:</form:label>
-          <form:input type="date" path="dob" class="w-100 form-control" />
+          <div class="w-100">
+            <form:input id="dob"  disabled="true" type="date" path="dob" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="dobError"></div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3">
+          <form:label path="age"  class="col-4">Age:</form:label>
+          <div class="w-100">
+            <form:input id="age" disabled="true" path="age" class="w-100 form-control" />
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
           <form:label path="address" class="col-4">Address:</form:label>
-          <form:textarea  path="address" class="w-100 form-control" />
+          <div class="w-100">
+            <form:textarea id="address" onblur="validateAddress(addressField,addressError)" path="address" class="w-100 form-control" />
+            <div class="ps-2 d-none text-danger" id="addressError"></div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
           <form:label path="nationality"  class="col-4">Nationality:</form:label>
-          <form:select path="nationality" items="${nationalityList}"  class="form-select w-100" />
+          <div class="w-100">
+            <form:select id="nationality" path="nationality" items="${nationalityList}"  class="form-select w-100" />
+            <div class="ps-2 d-none text-danger" id="nationalityError"></div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <form:label path="gender" class="col-4">Gender:</form:label>
+          <form:label  path="gender" class="col-4">Gender:</form:label>
           <div class="w-100">
-            <form:radiobutton  path="gender" value="Male" /> Male
-            <form:radiobutton  class="ms-5" path="gender" value="Female" /> Female
-            </div>
+            <form:radiobutton id="male" disabled="true" path="gender" value="Male" /> Male
+            <form:radiobutton id="female" disabled="true" class="ms-5" path="gender" value="Female" /> Female
+            <div class="ps-2 d-none text-danger" id="genderError"></div>
+          </div>
         <div class="d-flex justify-content-end mt-3">
         
           <form:button type="reset" class="btn btn-secondary me-2 px-4">Clear</form:button>
-          <form:button  type="submit" class="btn btn-success px-4" >Update</form:button>
+          <form:button  type="button" id="btn-submit" class="btn btn-success px-4" >Save</form:button>
           </div>
       </form:form>
     </div>
     
   </div>
 
+     <script src="./script.js" ></script>
+<script>
+      let dob = new Date("${user.getDob()}").getFullYear();
+      let currentYear = new Date().getFullYear();
+      let age = currentYear - dob;
+      ageField.value = age + " yrs";
+</script>
   
 
 
