@@ -9,6 +9,17 @@ public class User {
     private String address;
     private Date dob;
     private String nationality;
+    private int age;
+
+    
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public User(){
         
