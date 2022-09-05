@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 import com.mobios.assestment.Database.Database;
 import com.mobios.assestment.Model.User;
 
@@ -252,8 +250,8 @@ public class UserController {
     }
 
     @PostMapping("/editUser")
-    public String editUser(final RedirectAttributes redirectAttributes, @ModelAttribute("user") User user,@RequestParam("old-nic") String oldNic ){
-        
+    public String editUser(final RedirectAttributes redirectAttributes, @ModelAttribute("user") User user, @RequestParam("old-nic") String oldNic ){
+        //had to get old-nic to find the record in database
         boolean isNicDobGenderValid = validateNicDobGender(user.getNic(),user.getDob().toString(),user.getGender());
         boolean isNameValid = validName(user.getFullName());
         boolean isAddressValid = validAddress(user.getAddress());

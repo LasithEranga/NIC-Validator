@@ -13,7 +13,7 @@
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100" >
 
-    <div class="col-6 border p-5 shadow " >
+    <div class="col-11 col-md-6 border p-4 p-md-5 shadow " >
       <div class=" fs-2 fw-semibold mb-4">NIC Validator</div>
       <div class="  fw-semibold mb-4">Your Info</div>
       <div class="text-center" id="no-info">
@@ -21,41 +21,41 @@
       </div>
       <div id="content" >
         <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-3">Full Name</div>
-          <div>: ${users[0].getFullName()}</div>
+          <div class="col-4 col-md-3">Full Name</div>
+          <div >: ${users[0].getFullName()}</div>
         </div>
 
         <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-3">NIC No</div>
+          <div class="col-4 col-md-3">NIC No</div>
           <div>: ${users[0].getNic()}</div>
         </div>
 
         <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-3">Date of birth</div>
+          <div class="col-4 col-md-3">Date of birth</div>
           <div>: ${users[0].getDob()}</div>
         </div>
 
         <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-3">Age</div>
+          <div class="col-4 col-md-3">Age</div>
           <div>: <span id="age"></span></div>
         </div>
 
         <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-3">Address</div>
+          <div class="col-4 col-md-3">Address</div>
           <div>: ${users[0].getAddress()}</div>
         </div>
 
         <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-3">Nationality</div>
+          <div class="col-4 col-md-3">Nationality</div>
           <div>: ${users[0].getNationality()}</div>
         </div>
 
         <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-3">Gender</div>
+          <div class="col-4 col-md-3">Gender</div>
           <div>: ${users[0].getGender()}</div>
         </div>
 
-        <div class="d-flex justify-content-end mt-3">
+        <div class="d-flex justify-content-end mt-5 mt-md-3">
         <form action="/delete-user" method="POST">
           <input hidden value="${users[0].getNic()}" name="nic"/>
           <input type="submit" value="Delete" class="btn btn-secondary me-2 px-4">
