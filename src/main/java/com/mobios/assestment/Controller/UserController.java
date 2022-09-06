@@ -49,7 +49,7 @@ public class UserController {
         }
         catch(SQLException e){
 
-            e.printStackTrace();
+            //model.addAttribute("message", "Couldn't receive user details.");
 
         }
 
@@ -90,8 +90,6 @@ public class UserController {
 
         }
         catch(SQLException e){
-
-            e.printStackTrace();
 
         }
         model.addAttribute("user", user);
@@ -231,14 +229,15 @@ public class UserController {
 
                 Statement statement = conn.createStatement();
                 statement.executeUpdate(query);
+                redirectAttributes.addFlashAttribute("message", "User details saved");
+
 
             }
             catch(SQLException e){
 
-                e.printStackTrace();
+                redirectAttributes.addFlashAttribute("message", "Could not save user details!");
 
             }
-            redirectAttributes.addFlashAttribute("message", "User details saved");
 
         }else{
             redirectAttributes.addFlashAttribute("message", "Something went wrong!");
@@ -262,15 +261,16 @@ public class UserController {
 
                 Statement statement = conn.createStatement();
                 statement.executeUpdate(query);
+                redirectAttributes.addFlashAttribute("message", "User details updated");
 
             }
             catch(SQLException e){
 
-                e.printStackTrace();
+                //e.printStackTrace();
+                redirectAttributes.addFlashAttribute("message", "Couldn't update user details");
 
             }
 
-            redirectAttributes.addFlashAttribute("message", "User details updated");
 
             
         }else{
@@ -290,14 +290,16 @@ public class UserController {
 
             Statement statement = conn.createStatement();
             statement.executeUpdate(query);
+            redirectAttributes.addFlashAttribute("message", "User details removed");
+
 
         }
         catch(SQLException e){
 
-            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("message", "Could not removed user details");
+
 
         }
-        redirectAttributes.addFlashAttribute("message", "User details removed");
         return "redirect:/";
     }
 
