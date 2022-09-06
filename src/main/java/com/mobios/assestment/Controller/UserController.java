@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,34 +27,31 @@ public class UserController {
     @GetMapping("/")
     public String getUsers(Model model){
 
-        List<User> users = new ArrayList<User>();
+        String users = "[";
         String query = "SELECT * FROM user";
         ResultSet resultSet = null;
-        User user = null;
         try(Connection conn = Database.getConnection()){
 
             Statement statement = conn.createStatement();
             resultSet = statement.executeQuery(query);
             while(resultSet.next()){
-                //String nic, String fullName, String address, Date dob, String nationality, String gender
-                user = new User(
-                    resultSet.getString("nic"),
-                    resultSet.getString("full_name"),
-                    resultSet.getString("address"),
-                    resultSet.getDate("dob"),
-                    resultSet.getString("nationality"),
-                    resultSet.getString("gender")                    
-                    );
-                users.add(user);
+                // String nic, String fullName, String address, Date dob, String nationality, String gender
+                users += "{'nic':'"+resultSet.getString("nic")+"',";
+                users += "'fullName':'"+resultSet.getString("full_name")+"',";
+                users += "'address':'"+resultSet.getString("address")+"',";
+                users += "'dob':'"+resultSet.getString("dob")+"',";
+                users += "'nationality':'"+resultSet.getString("nationality")+"',";
+                users += "'gender':'"+resultSet.getString("gender")+"'},";
             }
 
         }
-        catch(SQLException e){
-
+        catch(Exception e){
+            // e.printStackTrace();
             //model.addAttribute("message", "Couldn't receive user details.");
 
         }
-
+        users.substring(0, users.length()-1);
+        users += "]";
         model.addAttribute("users", users);
 
         return "index";

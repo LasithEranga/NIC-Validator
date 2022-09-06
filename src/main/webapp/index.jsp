@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% int i = 10;%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,64 +21,34 @@
     }
   </style>
 </head>
-<body class="d-flex justify-content-center align-items-center vh-100" >
+<body>
+  
+  <header>
+    <div class="d-flex bg-light py-3 shadow"> 
 
-    <div class="col-11 col-md-6 border p-4 p-md-5 shadow " >
-      <div class=" fs-2 fw-semibold mb-4">NIC Validator</div>
-      <div class="  fw-semibold mb-4">Your Info</div>
+        <div class="col-6 ps-3 fs-3 fw-bold">
+          User Management System
+        </div>
+
+
+    </div>
+  </header>
+
+  <div class="container-fluid p-4">
+    <div class="justify-content-start align-items-top p-2 gap-0 " style="background-color:#EBEBEB;height: 80vh;overflow-y: scroll;">
+    
+      <div class="fs-2 fw-bold">Users</div>
+
       <div class="text-center" id="no-info">
-        <span class="text-nowrap">Sorry! No infomation available to show ... <span> <a href="/add-new" class="d-block d-md-inline ms-md-3 text-start"> Add info</a>
+        <span class="text-nowrap">Sorry! No users available to show ... <span> <a href="/add-new" class="d-block d-md-inline ms-md-3 text-start"> Add user</a>
       </div>
-      <div id="content" >
-        <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-4 col-md-3">Full Name</div>
-          <div >: ${users[0].getFullName()}</div>
-        </div>
 
-        <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-4 col-md-3">NIC No</div>
-          <div>: ${users[0].getNic()}</div>
-        </div>
-
-        <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-4 col-md-3">Date of birth</div>
-          <div>: ${users[0].getDob()}</div>
-        </div>
-
-        <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-4 col-md-3">Age</div>
-          <div>: <span id="age"></span></div>
-        </div>
-
-        <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-4 col-md-3">Address</div>
-          <div>: ${users[0].getAddress()}</div>
-        </div>
-
-        <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-4 col-md-3">Nationality</div>
-          <div>: ${users[0].getNationality()}</div>
-        </div>
-
-        <div class="d-flex justify-content-start mt-3 ">
-          <div class="col-4 col-md-3">Gender</div>
-          <div>: ${users[0].getGender()}</div>
-        </div>
-
-        <div class="d-flex justify-content-end mt-5 mt-md-3">
-        <form action="/delete-user" method="POST">
-          <input hidden value="${users[0].getNic()}" name="nic"/>
-          <input type="submit" value="Delete" class="btn btn-secondary me-2 px-4">
-        </form>
-
-        <form action="/edit-user" method="GET">
-          <input hidden value="${users[0].getNic()}" name="nic"/>
-          <input type="submit" value="Update" class="btn btn-success px-4">
-        </form>
-          
-        </div>
+      <div id="content" class="d-flex flex-wrap">
+       
+      </div>
     </div>
   </div>
+<a href="/add-new" class="bg-secondary position-fixed rounded-circle d-flex justify-content-center align-items-center btn border-0" style="bottom: 40px;right: 40px; width: 50px;height: 50px;"><i class="fa-solid fa-user-plus text-light ps-1"></i></div></a>
 
 
 <div class="toast-container position-fixed bottom-0 p-3" style="width:20rem;">
@@ -99,27 +68,82 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     
     <script>
-
-      const haveData = ${users.size()};
+    
+      const haveData = 1;
+      const users = ${users.toString()}
+      console.log(users);
       const noInfo = document.getElementById("no-info");
       const content = document.getElementById("content");
-      const ageContainer = document.getElementById("age");
       const toastMessage = document.getElementById('toast');
       const haveMessage = "${message}";
       
-      let dob = new Date("${users[0].getDob()}").getFullYear();
-      let currentYear = new Date().getFullYear();
-      let age = currentYear - dob;
-      ageContainer.innerText = age + " yrs";
-
       //display no info dialog if no users are available in database.
-      if(haveData === 0){
+      if(users.length === 0){
         content.style.display = "none";
         noInfo.style.display = "unset";
+
       }
       else{
         noInfo.style.display = "none";
         content.style.display = "unset";
+        let contentHtml = "";
+        users.forEach(user => {
+          let dob = new Date(user.dob).getFullYear();
+          let currentYear = new Date().getFullYear();
+          let age = currentYear - dob;
+          let iconColor = "";
+          let iconLetter = "";
+          if(user.gender == "Male"){
+            iconColor = "bg-primary"
+            iconLetter = "M";
+          }else{
+            iconColor = "bg-danger "
+            iconLetter = "F";
+          }
+          contentHtml +=  `
+          <div class="col-3 p-2">
+          <div class="border position-relative p-3 bg-light shadow">
+            <div class="`+iconColor+` text-light position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">`+iconLetter+`</div>
+
+            <div class="d-flex">
+              <div class="col-3">Name</div>
+              <span>:</span>
+              <div class="col-5 ps-2">`+user.fullName+`</div>
+            </div>
+            <div class="d-flex">
+              <div class="col-3">Birthday</div>
+              <span>:</span>
+              <div class="col-5 ps-2">`+user.dob+`</div>
+            </div>
+
+            <div class="d-flex">
+              <div class="col-3">NIC</div>
+              <span>:</span>
+              <div class="col-5 ps-2">`+user.nic+`</div>
+            </div>
+
+            <div class="d-flex">
+              <div class="col-3">Age</div>
+              <span>:</span>
+              <div class="col-5 ps-2">`+age+` yrs</div>
+            </div>
+
+            <div class="d-flex">
+              <div class="col-3">Address</div>
+              <span>:</span>
+              <div class="col-7 ps-2">`+user.address+`</div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+              <div><form action="/delete-user" method="POST"><input hidden value="`+user.nic+`" name="nic"/><button class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-solid fa-user-minus"></i></button></form></div>
+              <div><form action="/edit-user" method="GET"><input hidden value="`+user.nic+`" name="nic" /><button class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></button></form></div>
+            </div>
+
+          </div>
+        </div>`
+        });
+
+        content.innerHTML = contentHtml;
       }
 
 
