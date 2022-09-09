@@ -13,11 +13,28 @@
       .toast-container {
         left:5%;
       }
+      .modal-dialog-centered{
+        left:10%!important;
+      }
     }
     @media screen and (min-width: 480px) {
       .toast-container {
         left:0%;
       }
+    }
+    .fixed-lines{
+      overflow: hidden;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .content-height{
+      line-height: 1.5rem;
+      min-height: 12.5rem;
+      max-height: 12.5rem;
+    }
+    .pb-10{
+      padding-bottom:6rem!important;
     }
   </style>
 </head>
@@ -26,7 +43,7 @@
   <header>
     <div class="d-flex bg-light py-3 shadow"> 
 
-        <div class="col-6 ps-3 fs-3 fw-bold">
+        <div class="col col-lg-6 ps-3 fs-3 fw-bold">
           User Management System
         </div>
 
@@ -34,7 +51,7 @@
     </div>
   </header>
 
-  <div class="container-fluid p-4">
+  <div class="container-fluid p-lg-4">
     <div class="justify-content-start align-items-top p-2 gap-0 " style="background-color:#EBEBEB;height: 80vh;overflow-y: scroll;">
     
       <div class="fs-2 fw-bold">Users</div>
@@ -43,7 +60,7 @@
         <span class="text-nowrap">Sorry! No users available to show ... <span> <a href="/add-new" class="d-block d-md-inline ms-md-3 text-start"> Add user</a>
       </div>
 
-      <div id="content" class="d-flex flex-wrap">
+      <div id="content" class="d-flex flex-wrap pb-10 pb-lg-0">
        
       </div>
     </div>
@@ -69,17 +86,17 @@
 <%-- Modal dialog --%>
 <div class="modal fade" id="deleteModal" tabindex="-1" >
   <div class="modal-dialog modal-dialog-centered" >
-    <div class="modal-content" style="width:80%">
-      <div class="modal-header">
+    <div class="modal-content rounded-0 border-0" style="width:80%">
+      <div class="modal-header border-0">
         <h5 class="modal-title">Are you sure?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body border-0">
       This action will remove the user from system.
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnOkay">Okay</button>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-secondary rounded-1" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary rounded-1" id="btnOkay">Okay</button>
       </div>
     </div>
   </div>
@@ -123,14 +140,14 @@
             iconLetter = "F";
           }
           contentHtml +=  `
-          <div class="col-3 p-2">
+          <div class="col-lg-3 p-2">
           <div class="border position-relative p-3 bg-light shadow">
             <div class="`+iconColor+` text-light position-absolute rounded-circle d-flex justify-content-center align-items-center " style="top: 10px;right: 10px; width: 35px;height: 35px;">`+iconLetter+`</div>
-
+            <div class="col-12 content-height">
             <div class="d-flex">
               <div class="col-3">Name</div>
               <span>:</span>
-              <div class="col-5 ps-2">`+user.fullName+`</div>
+              <div class="col-8 ps-2 fixed-lines">`+user.fullName+`</div>
             </div>
             <div class="d-flex">
               <div class="col-3">Birthday</div>
@@ -153,15 +170,16 @@
             <div class="d-flex">
               <div class="col-3">Address</div>
               <span>:</span>
-              <div class="col-7 ps-2">`+user.address+`</div>
+              <div class=" ps-2 fixed-lines">`+user.address+`</div>
             </div>
 
-            <div class="d-flex justify-content-end">
+             <div class="d-flex justify-content-end position-absolute bottom-0 mb-2 end-0 me-3">
               <div><form action="/delete-user" method="POST"><input hidden value="`+user.nic+`" name="nic"/><button type="button" class="text-light bg-danger me-2 d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;" onClick="openDeleteWarning(this.form)"><i class="fa-solid fa-user-minus"></i></button></form></div>
               <div><form action="/edit-user" method="GET"><input hidden value="`+user.nic+`" name="nic" /><button class="text-light bg-success d-flex justify-content-center align-items-center btn rounded-0" style="width:35px;height: 35px;"><i class="fa-sharp fa-solid fa-user-pen"></i></button></form></div>
             </div>
-
           </div>
+          </div>
+          
         </div>`
         });
 
@@ -186,11 +204,9 @@
       const modalOkayButtonClickHandler = () => {
         deleteModal.hide()
         console.log(formtosubmit)
-
         formtosubmit.submit()
         console.log("Done")
       }
-
 
       
     </script>

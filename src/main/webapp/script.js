@@ -213,16 +213,4 @@ const validateAddress = (addressField,errorField) => {
 }
 
 
-buttonClick.addEventListener("click", () => {
-    //validate name 
-    let isNameValid = validateName(fullNameField,fullNameError);
-    let isAddressValid = validateAddress(addressField,addressError);
 
-    if(isNameValid && isAddressValid){
-        //enable the elements before they were submitted otherwise saves as null ;-(
-        dobField.removeAttribute("disabled")
-        maleRadioBtn.removeAttribute("disabled")
-        femaleRadioBtn.removeAttribute("disabled")
-        form.submit();
-    }
-});

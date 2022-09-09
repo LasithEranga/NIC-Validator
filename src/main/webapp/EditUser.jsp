@@ -85,10 +85,10 @@
             <div class="ps-2 d-none text-danger" id="genderError"></div>
           </div>
         <div class="d-flex justify-content-end mt-3">
-        
           <form:button type="reset" class="btn btn-secondary me-2 px-4">Clear</form:button>
           <form:button  type="button" id="btn-submit" class="btn btn-success px-4" >Save</form:button>
           </div>
+
       </form:form>
     </div>
     
@@ -100,8 +100,8 @@
       let currentYear = new Date().getFullYear();
       let age = currentYear - dob;
       ageField.value = age + " yrs";
-
       document.getElementById("old-nic").value = document.getElementById("nic").value;
+      
 </script>
   
 
