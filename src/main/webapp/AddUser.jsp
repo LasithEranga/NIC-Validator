@@ -84,15 +84,18 @@
         <div class="d-flex justify-content-end mt-3">
         
           <form:button type="reset" class="btn btn-secondary me-2 px-4">Clear</form:button>
-          <form:button  type="button" id="btn-submit" class="btn btn-success px-4" >Save</form:button>
+          <form:button  type="button" id="btn-save" class="btn btn-success px-4" >Save</form:button>
           </div>
       </form:form>
 
      <script src="./script.js" ></script>
      <script>
+        const buttonSave = document.getElementById("btn-save");
+
         ageField.value = "";
-        //setting the btnClick seperately in add and update to implement the nic change warning feature
-        buttonClick.addEventListener("click", () => {
+
+        //setting the btnClick event seperately in add and update to implement the nic change warning feature
+        buttonSave.addEventListener("click", () => {
           //validate name 
           let isNameValid = validateName(fullNameField,fullNameError);
           let isAddressValid = validateAddress(addressField,addressError);

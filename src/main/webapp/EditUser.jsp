@@ -85,27 +85,98 @@
             <div class="ps-2 d-none text-danger" id="genderError"></div>
           </div>
         <div class="d-flex justify-content-end mt-3">
-          <form:button type="reset" class="btn btn-secondary me-2 px-4">Clear</form:button>
-          <form:button  type="button" id="btn-submit" class="btn btn-success px-4" >Save</form:button>
-          </div>
+          <form:button type="reset" onClick="setAge()" class="btn btn-secondary me-2 px-4">Reset</form:button>
+          <input  type="button" id="btn-update" class="btn btn-success px-4" value="Submit" />
+        </div>
 
       </form:form>
     </div>
     
   </div>
 
-     <script src="./script.js" ></script>
+
+<%-- Modal dialog --%>
+<div class="modal fade" id="warningModal" tabindex="-1" >
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content rounded-0 border-0" style="width:80%">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Are you sure?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body border-0">
+      You have changed the NIC.
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-secondary rounded-1" data-bs-dismiss="modal">Go Back</button>
+        <button type="button" class="btn btn-primary rounded-1" id="btnOkay">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="./script.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
 <script>
-      let dob = new Date("${user.getDob()}").getFullYear();
-      let currentYear = new Date().getFullYear();
-      let age = currentYear - dob;
-      ageField.value = age + " yrs";
-      document.getElementById("old-nic").value = document.getElementById("nic").value;
+      const buttonUpdate = document.getElementById("btn-update");
       
+      const newNic = document.getElementById('nic');
+      const oldNicField = document.getElementById('old-nic');
+      const oldNic = newNic.value;
+      oldNicField.value = oldNic;
+      const warningModal = new bootstrap.Modal(document.getElementById('warningModal'));
+      const btnOkay = document.getElementById('btnOkay');
+      
+
+      const setAge = () => {
+        setTimeout(() => {
+          let dob = new Date("${user.getDob()}").getFullYear();
+          let currentYear = new Date().getFullYear();
+          let age = currentYear - dob;
+          ageField.value = age + " yrs";
+        }, 100);
+        
+      }
+
+      setAge();
+
+      const submitForm = () => {
+              //enable the elements before they were submitted otherwise saves as null ;-(
+              dobField.removeAttribute("disabled");
+              maleRadioBtn.removeAttribute("disabled");
+              femaleRadioBtn.removeAttribute("disabled");
+              form.submit();
+          }
+
+          const userActionHandler = () =>{
+            //if user confirms the nic change, form will be submitted
+              submitForm();
+          }
+
+
+      //setting the btnClick event seperately in add and update to implement the nic change warning feature
+      //compare nic with old nic and display a warning
+        buttonUpdate.addEventListener("click", () => {
+          //validate name 
+          let isNameValid = validateName(fullNameField,fullNameError);
+          let isAddressValid = validateAddress(addressField,addressError);
+          
+          if(isNameValid && isAddressValid){
+            if(newNic.value !== oldNic){
+              btnOkay.setAttribute('onclick',"userActionHandler()");
+              warningModal.show();
+            }else{
+              submitForm();
+            }
+          }
+        }
+
+      );
+
 </script>
   
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

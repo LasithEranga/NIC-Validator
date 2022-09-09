@@ -17,7 +17,6 @@ const addressError = document.getElementById("addressError");
 const nationalityField = document.getElementById("nationality");
 const nationalityError = document.getElementById("nationalityError");
 
-const buttonClick = document.getElementById("btn-submit");
 const form = document.getElementById("form");
 
 const genderError = document.getElementById("genderError");
@@ -188,7 +187,6 @@ const validateName = (nameField,errorField) => {
 const validateAddress = (addressField,errorField) => {
 
     let address = addressField.value.toString();
-    console.log(addressField.value);
 
     if(address.length === 0){
         //show error
