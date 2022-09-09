@@ -1,8 +1,12 @@
 package com.mobios.assestment.Controller;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -25,7 +29,7 @@ public class UserController {
     public String getUsers(Model model){
 
         String users = "[";
-        String query = "SELECT * FROM user";
+        String query = "SELECT * FROM user WHERE state='active'";
         ResultSet resultSet = null;
         try(Connection conn = Database.getConnection()){
 
@@ -218,9 +222,12 @@ public class UserController {
         boolean isNicDobGenderValid = validateNicDobGender(user.getNic(),user.getDob().toString(),user.getGender());
         boolean isNameValid = validName(user.getFullName());
         boolean isAddressValid = validAddress(user.getAddress());
+        java.util.Date date = new java.util.Date();
+        java.sql.Date today = new java.sql.Date(date.getTime());
 
+        System.out.println(today);
         if(isNicDobGenderValid && isNameValid && isAddressValid){
-            String query = "INSERT INTO `user`(`nic`, `full_name`, `address`, `dob`, `nationality`, `gender`) VALUES ('"+user.getNic()+"','"+user.getFullName()+"','"+user.getAddress()+"','"+user.getDob()+"','"+user.getNationality()+"','"+user.getGender()+"')";
+            String query = "INSERT INTO `user`(`nic`, `full_name`, `address`, `dob`, `nationality`, `gender`,`state`, `action_performed_by`, `record_date`) VALUES ('"+user.getNic()+"','"+user.getFullName()+"','"+user.getAddress()+"','"+user.getDob()+"','"+user.getNationality()+"','"+user.getGender()+"', 'active','created by system','"+today+"')";
             try(Connection conn = Database.getConnection()){
 
                 Statement statement = conn.createStatement();
@@ -230,7 +237,7 @@ public class UserController {
 
             }
             catch(SQLException e){
-
+                
                 redirectAttributes.addFlashAttribute("message", "Could not save user details!");
 
             }
@@ -250,9 +257,11 @@ public class UserController {
         boolean isNicDobGenderValid = validateNicDobGender(user.getNic(),user.getDob().toString(),user.getGender());
         boolean isNameValid = validName(user.getFullName());
         boolean isAddressValid = validAddress(user.getAddress());
+        java.util.Date date = new java.util.Date();
+        java.sql.Date today = new java.sql.Date(date.getTime());
 
         if(isNicDobGenderValid && isNameValid && isAddressValid){
-            String query = "UPDATE `user` SET `nic`='"+user.getNic()+"',`full_name`='"+user.getFullName()+"',`address`='"+user.getAddress()+"',`dob`='"+user.getDob()+"',`nationality`='"+user.getNationality()+"',`gender`='"+user.getGender()+"' WHERE nic='"+oldNic+"'";
+            String query = "UPDATE `user` SET `nic`='"+user.getNic()+"',`full_name`='"+user.getFullName()+"',`address`='"+user.getAddress()+"',`dob`='"+user.getDob()+"',`nationality`='"+user.getNationality()+"',`gender`='"+user.getGender()+"',`state`='active', `action_performed_by` = 'updated by system', `record_date`='"+today+"' WHERE nic='"+oldNic+"'";
             try(Connection conn = Database.getConnection()){
 
                 Statement statement = conn.createStatement();
@@ -280,8 +289,9 @@ public class UserController {
 
     @PostMapping("/delete-user")
     public String deleteUser(@RequestParam("nic") String nic, final RedirectAttributes redirectAttributes ){
-
-        String query = "DELETE FROM `user` WHERE nic='"+nic+"'";
+        java.util.Date date = new java.util.Date();
+        java.sql.Date today = new java.sql.Date(date.getTime());
+        String query = "UPDATE `user` SET `state`='deleted',`action_performed_by`='deleted by system', `record_date`='"+today+"'  WHERE nic='"+nic+"'";
         try(Connection conn = Database.getConnection()){
 
             Statement statement = conn.createStatement();
@@ -291,7 +301,7 @@ public class UserController {
 
         }
         catch(SQLException e){
-
+            e.printStackTrace();
             redirectAttributes.addFlashAttribute("message", "Could not removed user details");
 
 
